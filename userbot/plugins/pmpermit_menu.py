@@ -46,67 +46,67 @@ async def _(event):
          FIVE = ("`Okay. please have the basic manners as to not bother my master too much. If he wishes to help you, he will respond to you soon.`\n**Do not ask repeatdly else you will be blocked and reported.**")
          LWARN = ("**This is your last warning. DO NOT send another message else you will be blocked and reported. Keep patience. My master will respond you ASAP.**\n__Use__ `/start` __to go back to the main menu.__")
          THIRD = ("See pinned message in @TeleBotHelp or watch this [video tutorial](https://bit.ly/TeleBotDeploy).")
-        async with borg.conversation(chat) as conv:
-         await borg.send_message(chat, PM)
-         chat_id = event.from_id
-         response = await conv.get_response(chat)
-         y = response.text
-         if y == "1":
-             await borg.send_message(chat, ONE)
+         async with borg.conversation(chat) as conv:
+             await borg.send_message(chat, PM)
+             chat_id = event.from_id
              response = await conv.get_response(chat)
-             await event.delete()
-             if not response.text == "/start":
-                 await response.delete()
-                 await borg.send_message(chat, LWARN)
+             y = response.text
+             if y == "1":
+                 await borg.send_message(chat, ONE)
                  response = await conv.get_response(chat)
                  await event.delete()
-                 await response.delete()
+                 if not response.text == "/start":
+                     await response.delete()
+                     await borg.send_message(chat, LWARN)
+                     response = await conv.get_response(chat)
+                     await event.delete()
+                     await response.delete()
+                     response = await conv.get_response(chat)
+                     if not response.text == "/start":
+                         await borg.send_message(chat, TWO)
+                         await asyncio.sleep(3)
+                         await event.client(functions.contacts.BlockRequest(chat_id))
+             elif y == "2":
+                 await borg.send_message(chat, LWARN)
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
                      await borg.send_message(chat, TWO)
                      await asyncio.sleep(3)
                      await event.client(functions.contacts.BlockRequest(chat_id))
-         elif y == "2":
-             await borg.send_message(chat, LWARN)
-             response = await conv.get_response(chat)
-             if not response.text == "/start":
-                 await borg.send_message(chat, TWO)
-                 await asyncio.sleep(3)
-                 await event.client(functions.contacts.BlockRequest(chat_id))
-         
 
-         elif y == "3":
-             await borg.send_message(chat, THIRD)
-             response = await conv.get_response(chat)
-             await event.delete()
-             await response.delete()
-             if not response.text == "/start":
-                 await borg.send_message(chat, LWARN)
+
+             elif y == "3":
+                 await borg.send_message(chat, THIRD)
+                 response = await conv.get_response(chat)
                  await event.delete()
+                 await response.delete()
+                 if not response.text == "/start":
+                     await borg.send_message(chat, LWARN)
+                     await event.delete()
+                     response = await conv.get_response(chat)
+                     if not response.text == "/start":
+                         await borg.send_message(chat, TWO)
+                         await asyncio.sleep(3)
+                         await event.client(functions.contacts.BlockRequest(chat_id))
+             elif y == "4":
+                 await borg.send_message(chat,FIVE)
                  response = await conv.get_response(chat)
                  if not response.text == "/start":
-                     await borg.send_message(chat, TWO)
-                     await asyncio.sleep(3)
-                     await event.client(functions.contacts.BlockRequest(chat_id))
-         elif y == "4":
-             await borg.send_message(chat,FIVE)
-             response = await conv.get_response(chat)
-             if not response.text == "/start":
-                 await borg.send_message(chat, LWARN)
+                     await borg.send_message(chat, LWARN)
+                     response = await conv.get_response(chat)
+                     if not response.text == "/start":
+                         await borg.send_message(chat, TWO)
+                         await asyncio.sleep(3)
+                         await event.client(functions.contacts.BlockRequest(chat_id))
+             else:
+                 await borg.send_message(chat, "`Learn to read. You have entered an invalid command. Send /start again or do nothing if you do not wish to be blocked and reported.`")
                  response = await conv.get_response(chat)
-                 if not response.text == "/start":
-                     await borg.send_message(chat, TWO)
-                     await asyncio.sleep(3)
-                     await event.client(functions.contacts.BlockRequest(chat_id))
-         else:
-             await borg.send_message(chat, "`Learn to read. You have entered an invalid command. Send /start again or do nothing if you do not wish to be blocked and reported.`")
-             response = await conv.get_response(chat)
-             z = response.text
-             if not z == "/start":
-                 await borg.send_message(chat, LWARN)
-                 await conv.get_response(chat)
-                 if not response.text == "/start":
-                     await borg.send_message(chat, TWO)
-                     await asyncio.sleep(3)
-                     await event.client(functions.contacts.BlockRequest(chat_id))
+                 z = response.text
+                 if not z == "/start":
+                     await borg.send_message(chat, LWARN)
+                     await conv.get_response(chat)
+                     if not response.text == "/start":
+                         await borg.send_message(chat, TWO)
+                         await asyncio.sleep(3)
+                         await event.client(functions.contacts.BlockRequest(chat_id))
 
