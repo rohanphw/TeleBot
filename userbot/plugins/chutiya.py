@@ -7,7 +7,7 @@ from uniborg.util import admin_cmd
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "Chal Bhosdike"
+    mentions = "Ek no. ke chutiya insaan ho be tum"
     chat = await event.get_input_chat()
     async for x in borg.iter_participants(chat, filter=ChannelParticipantsAdmins):
         mentions += f""
@@ -18,3 +18,4 @@ async def _(event):
     else:
         await event.reply(mentions)
     await event.delete()
+© 2020 GitHub, Inc.
